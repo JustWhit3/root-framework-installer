@@ -1,18 +1,46 @@
 #!/bin/bash
 
-# $1 - platform
+# $1 - platform zipped file
+# $2 - operating system
+# $3 - method
 
 #====================================================
-#     DOWNLOAD FUNCTION
+#     "download" FUNCTION
 #====================================================
 download() {
     echo ""
     echo "Downloading the ROOT code from https://root.cern/download/$1..."
     echo "This may take a few minutes!"
     echo ""
-    if ! curl https://root.cern/download/$1 -o $1 ; then
+    if ! curl https://root.cern/download/$1 -o "$1" ; then
         echo "Failed to download the zip file!"
         exit
+    fi
+}
+
+#====================================================
+#     "unpacker" FUNCTION
+#====================================================
+unpacker() {
+    tar -xvf "${1::-3}"
+    mv root "${1::-7}"
+    rm root*tar*
+    if [ -d "$HOME/${1::-7}" ] ; then
+        rm -rf "$HOME/${1::-7}"
+    fi
+    mv "${1::-7}" "$HOME"
+}
+
+#====================================================
+#     "bash_writer" FUNCTION
+#====================================================
+bash_writer() {
+    if ! grep -q "$HOME/${1::-7}/bin/thisroot.sh" "$HOME/.bashrc" ; then
+        echo "" >> "$HOME/.bashrc"
+        echo "#ROOT settings" >> "$HOME/.bashrc"
+        echo "source $HOME/${1::-7}/bin/thisroot.sh" >> "$HOME/.bashrc"
+        echo "" >> "$HOME/.bashrc"
+        source "$HOME/.bashrc"
     fi
 }
 
@@ -28,6 +56,9 @@ elif [ -f "${1::-3}" ] ; then
 elif [ -d "${1::-7}" ] ; then
     echo ""
     echo "The $1 file has been already downloaded, gunzipped and upacked!"
+elif [ -d "$HOME/${1::-7}" ] ; then
+    echo ""
+    echo "The $1 file has been already downloaded, gunzipped, upacked and moved in the $HOME directory!"
 else
     if [ "$(ls -1 root*tar* 2>/dev/null | wc -l )" -gt 0 ] ; then
         echo ""
@@ -42,21 +73,61 @@ fi
 #====================================================
 #     UNZIPPING THE FILE
 #====================================================
-if [ -d "${1::-7}" ] ; then
-    echo ""
+if [ -d "$HOME/${1::-7}" ] ; then
+    :
+elif [ -d "${1::-7}" ] ; then
+    mv "${1::-7}" "$HOME"
 elif [ -f "${1::-3}" ] ; then
     echo ""
     echo "Upacking the file:"
-    tar -xvf "${1::-3}"
-    mv root "${1::-7}"
-    rm root*tar*
-    echo ""
-else
+    unpacker "$1"
+elif [ -f "$1" ] ; then
     echo ""
     echo "Unzipping and upacking the file:"
     gunzip "$1"
-    tar -xvf "${1::-3}"
-    mv root "${1::-7}"
-    rm root*tar*
+    unpacker "$1"
+else
+    :
+fi
+echo ""
+
+#====================================================
+#     INSTALLATION FOR UBUNTU AND WSL
+#====================================================
+if [ "$2" == "Ubuntu" ] || [ "$2" == "ubuntu" ] || [ "$2" == "WSL" ] || [ "$2" == "wsl" ] ; then
+    echo "Installing prerequisites:"
     echo ""
+    echo "System upgrade and update..."
+    echo ""
+    sudo apt-get upgrade
+    sudo apt-get update
+    echo ""
+    echo "Mandatory packages..."
+    echo ""
+    if ! sudo apt-get install git dpkg-dev cmake g++ gcc binutils libx11-dev libxpm-dev libxft-dev libxext-dev ; then
+        echo "Unable to install all the mandatory packages!"
+        exit
+    fi
+    echo ""
+    echo "Optional packages..."
+    echo "If some of them will not be installed correctly don't worry!"
+    echo ""
+    sudo apt-get install gfortran libssl-dev libpcre3-dev xlibmesa-glu-dev libglew1.5-dev libftgl-dev libmysqlclient-dev libfftw3-dev libcfitsio-dev graphviz-dev libavahi-compat-libdnssd-dev libldap2-dev python-dev libxml2-dev libkrb5-dev libgsl0-dev
+    if [ "$3" == "binary" ] || [ "$3" == "Binary" ] ; then
+        echo ""
+        echo "Installing ROOT from bynary distribution..."
+        bash_writer "$1"
+    elif [ "$3" == "source" ] || [ "$3" == "Source" ] ; then
+        echo ""
+        echo "Installing ROOT from source code..."
+        mkdir -p "$HOME/${1::-7}-build"
+    else
+        echo ""
+        echo "$3 installation method is not supported for $2 operating system!"
+    fi
+    echo ""
+    exit
+else
+    echo "This installation script is not supported for $2 operating system!"
+    exit
 fi
