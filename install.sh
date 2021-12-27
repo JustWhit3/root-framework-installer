@@ -37,9 +37,7 @@ unpacker() {
 bash_writer() {
     if ! grep -q "$HOME/${1::-7}/bin/thisroot.sh" "$HOME/.bashrc" ; then
         echo "" >> "$HOME/.bashrc"
-        echo "#ROOT settings" >> "$HOME/.bashrc"
         echo "source $HOME/${1::-7}/bin/thisroot.sh" >> "$HOME/.bashrc"
-        echo "" >> "$HOME/.bashrc"
         source "$HOME/.bashrc"
     fi
 }
@@ -113,6 +111,27 @@ if [ "$2" == "Ubuntu" ] || [ "$2" == "ubuntu" ] || [ "$2" == "WSL" ] || [ "$2" =
     echo "If some of them will not be installed correctly don't worry!"
     echo ""
     sudo apt-get install gfortran libssl-dev libpcre3-dev xlibmesa-glu-dev libglew1.5-dev libftgl-dev libmysqlclient-dev libfftw3-dev libcfitsio-dev graphviz-dev libavahi-compat-libdnssd-dev libldap2-dev python-dev libxml2-dev libkrb5-dev libgsl0-dev
+    if [ "$2" == "WSL" ] || [ "$2" == "wsl" ] ; then
+        echo ""
+        echo "Graphical packages for WSL..."
+        echo ""
+        sudo apt-get install x11-apps
+        if ! sudo apt-get install libtiff5 ; then
+            sudo apt-get install libncurses5
+        fi
+        if ! grep -q "(/sbin/ip" "$HOME/.bashrc" && ! grep -q "route" "$HOME/.bashrc" && 
+           ! grep -q "awk" "$HOME/.bashrc" && ! grep -q "/default/" "$HOME/.bashrc" && 
+           ! grep -q "}'):0" "$HOME/.bashrc" ; then
+            echo "" >> "$HOME/.bashrc"
+            echo "export DISPLAY=\"\$(/sbin/ip route | awk '/default/ { print $3 }'):0\"" >> "$HOME/.bashrc"
+            source "$HOME/.bashrc"
+        fi
+        if ! grep -q "LIBGL_ALWAYS_INDIRECT=1" "$HOME/.bashrc"; then
+            echo "" >> "$HOME/.bashrc"
+            echo "export LIBGL_ALWAYS_INDIRECT=1" >> "$HOME/.bashrc"
+            source "$HOME/.bashrc"
+        fi
+    fi
     if [ "$3" == "binary" ] || [ "$3" == "Binary" ] ; then
         echo ""
         echo "Installing ROOT from bynary distribution..."
@@ -121,13 +140,26 @@ if [ "$2" == "Ubuntu" ] || [ "$2" == "ubuntu" ] || [ "$2" == "WSL" ] || [ "$2" =
         echo ""
         echo "Installing ROOT from source code..."
         mkdir -p "$HOME/${1::-7}-build"
+        cd "$HOME/${1::-7}-build" || exit
+        cmake "$HOME/${1::-7}"
+        cmake --build .
     else
         echo ""
         echo "$3 installation method is not supported for $2 operating system!"
+        echo ""
+        exit
     fi
     echo ""
-    exit
 else
     echo "This installation script is not supported for $2 operating system!"
     exit
+fi
+
+#====================================================
+#     QUICK INSTALLATION CHECK
+#====================================================
+echo "ROOT installation check (if the ROOT prompt command is opened, the installation was successfull):"
+echo ""
+if ! root ; then
+    echo "Something went wrong, ROOT has not been correctly installed!"
 fi
