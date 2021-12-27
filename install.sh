@@ -87,10 +87,12 @@ elif [ -d "${1::-7}" ] ; then
 elif [ -f "${1::-3}" ] ; then
     echo ""
     echo "Upacking the file:"
+    echo ""
     unpacker "$1"
 elif [ -f "$1" ] ; then
     echo ""
     echo "Unzipping and upacking the file:"
+    echo ""
     gunzip "$1"
     unpacker "$1"
 else
@@ -226,3 +228,4 @@ echo "Enter \"root\" (without quotation marks) in the terminal to enter the ROOT
 echo ""
 echo "If you have issue with graphics on WSL or any kind of problem you can read my step-by-step guides about ROOT installation here:"
 echo "https://github.com/JustWhit3/useful-guides/tree/main/ROOT/Installation."
+echo ""
