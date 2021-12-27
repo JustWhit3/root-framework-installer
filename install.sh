@@ -43,6 +43,15 @@ bash_writer() {
 }
 
 #====================================================
+#     "eofer" FUNCTION
+#====================================================
+eofer() {
+    root << EOF
+    .q
+EOF
+}
+
+#====================================================
 #     DOWNLOADING THE FILE
 #====================================================  
 if [ -f "$1" ] ; then
@@ -150,6 +159,53 @@ if [ "$2" == "Ubuntu" ] || [ "$2" == "ubuntu" ] || [ "$2" == "WSL" ] || [ "$2" =
         exit
     fi
     echo ""
+
+#====================================================
+#     INSTALLATION FOR MACOS
+#====================================================
+elif [ "$2" == "MacOS" ] || [ "$2" == "MACOS" ] || [ "$2" == "macOS" ] || [ "$2" == "macos" ] || [ "$2" == "Macos" ] ; then
+    cd $HOME || exit
+    echo "Installing prerequisites:"
+    echo ""
+    echo "System update..."
+    echo ""
+    softwareupdate --install -a
+    echo ""
+    if [ "$3" == "brew" ] || [ "$3" == "Brew" ] ; then
+        echo "Updating and upgrading brew..."
+        echo ""
+        if ! brew update ; then
+            echo "The brew package manager is not installed! I am installing it..."
+            echo ""
+            if ! /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)" ; then
+                echo "Unable to install brew package manager!"
+            fi
+            echo ""
+            brew update
+        fi
+        brew upgrade
+        echo ""
+        echo "Installing ROOT..."
+        echo ""
+        if ! brew install root6 ; then
+            echo "Unable to install ROOT via brew!"
+            exit
+        fi
+    elif [ "$3" == "MacPorts" ] || [ "$3" == "Macports" ] || [ "$3" == "macports" ] || [ "$3" == "macPorts" ] ; then
+        echo "Installing Xcode..."
+        echo ""
+        if ! port install root6 ; then
+            echo "Unable to install ROOT via brew! Probably you have not installed the following prerequisites:"
+            echo "MacPorts: see https://www.macports.org/install.php."
+            echo "Xcode: enter \"xcode-select --install\" on the terminal."
+            exit
+        fi
+    else
+        echo ""
+        echo "$3 installation method is not supported for $2 operating system!"
+        echo ""
+        exit
+    fi
 else
     echo "This installation script is not supported for $2 operating system!"
     exit
@@ -158,8 +214,15 @@ fi
 #====================================================
 #     QUICK INSTALLATION CHECK
 #====================================================
-echo "ROOT installation check (if the ROOT prompt command is opened, the installation was successfull):"
+echo "ROOT installation check:"
 echo ""
-if ! root ; then
+if ! eofer; then
     echo "Something went wrong, ROOT has not been correctly installed!"
+    exit
 fi
+echo "ROOT has been successfully installed!"
+echo ""
+echo "Enter \"root\" (without quotation marks) in the terminal to enter the ROOT command prompt."
+echo ""
+echo "If you have any kind of problem you can read my step-by-step guides about ROOT installation here:"
+echo "https://github.com/JustWhit3/useful-guides/tree/main/ROOT/Installation."
