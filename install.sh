@@ -35,9 +35,9 @@ unpacker() {
 #     "bash_writer" FUNCTION
 #====================================================
 bash_writer() {
-    if ! grep -q "$HOME/${1::-7}/bin/thisroot.sh" "$HOME/.bashrc" ; then
+    if ! grep -q "$HOME/${1::-7}$2/bin/thisroot.sh" "$HOME/.bashrc" ; then
         echo "" >> "$HOME/.bashrc"
-        echo "source $HOME/${1::-7}/bin/thisroot.sh" >> "$HOME/.bashrc"
+        echo "source $HOME/${1::-7}$2/bin/thisroot.sh" >> "$HOME/.bashrc"
         source "$HOME/.bashrc"
     fi
 }
@@ -148,7 +148,7 @@ if [ "$2" == "Ubuntu" ] || [ "$2" == "ubuntu" ] || [ "$2" == "WSL" ] || [ "$2" =
     if [ "$3" == "binary" ] || [ "$3" == "Binary" ] ; then
         echo ""
         echo "Installing ROOT from bynary distribution..."
-        bash_writer "$1"
+        bash_writer "$1" ""
     elif [ "$3" == "source" ] || [ "$3" == "Source" ] ; then
         echo ""
         echo "Installing ROOT from source code..."
@@ -156,6 +156,7 @@ if [ "$2" == "Ubuntu" ] || [ "$2" == "ubuntu" ] || [ "$2" == "WSL" ] || [ "$2" =
         cd "$HOME/${1::-7}-build" || exit
         cmake "$HOME/${1::-7}"
         cmake --build .
+        bash_writer "$1" "-build"
     else
         echo ""
         echo "$3 installation method is not supported for $2 operating system!"
