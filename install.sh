@@ -219,6 +219,7 @@ fi
 #====================================================
 #     QUICK INSTALLATION CHECK
 #====================================================
+source "$HOME/.bashrc"
 echo "ROOT installation check:"
 echo ""
 if ! eofer; then
