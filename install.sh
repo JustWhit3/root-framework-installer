@@ -23,8 +23,8 @@ download() {
 #====================================================
 unpacker() {
     tar -xvf "${1::-3}"
-    mv root "${1::-7}"
     rm root*tar*
+    mv root* "${1::-7}"
     if [ -d "$HOME/${1::-7}" ] ; then
         rm -rf "$HOME/${1::-7}"
     fi
