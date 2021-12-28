@@ -35,7 +35,7 @@ To download the library you can choose one of the two possibilities:
 
 First of all, you need to download the code: go to the [main page](https://github.com/JustWhit3/root-framework-installer) of the repository and click on the upper right green button called `Code`. Than click on `Download ZIP` (see screenshot below) and wait the download to be completed.
 
-https://github.com/JustWhit3/root-framework-installer/blob/main/img/download_repo.png
+<img src="https://github.com/JustWhit3/root-framework-installer/blob/main/img/download_repo.png">
 
 Then open a fresh shell and move the downloaded zipped file to your home directory (or to any other place you prefer):
 ```shell
@@ -85,9 +85,9 @@ To run the script and install the ROOT framework you need to enter the repositor
 therefore the script takes three arguments in the command prompt:
 1) `[platform-zipped-file]`
 It is the zipped file name of the platform of your installation. You can find it by clicking on [this link](https://root.cern/install/all_releases/) and choosing the latest release on the top:
-https://github.com/JustWhit3/root-framework-installer/blob/main/img/latest_release.png
+<img src="https://github.com/JustWhit3/root-framework-installer/blob/main/img/latest_release.png">
 than choose the platform you want and copy the name of the corresponding .zip file (ex: `root_v6.24.06.Linux-ubuntu20-x86_64-gcc9.3.tar.gz` for Ubuntu 20):
-https://github.com/JustWhit3/root-framework-installer/blob/main/img/distributions.png
+<img src="https://github.com/JustWhit3/root-framework-installer/blob/main/img/distributions.png">
 This has to be placed into the `[platform-zipped-file]` place.
 In case you are installing via a package manager (for example for MacOS operating system via *brew* or *MacPorts*), you have to enter `package-manager` here.
 
