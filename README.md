@@ -24,6 +24,10 @@ The script works for the following operating systems:
   - *[brew](https://brew.sh/index_it)*.
   - *[MacPorts](https://www.macports.org/)*.
 
+>**NOTE**: this script has been widely tested on Ubuntu and Windows operating systems. Any test has been provided for MacOS operating system, but it should fully 100% work on it without any problem.
+
+>**NOTE 2**: if you find any issue or problem during the installation with this script, please write me or open an issue on the repository and I will fix it as soon as possible.
+
 ## How to use the script
 
 First of all, just to be 100% safe, be sure to don't have other ROOT versions installed in your computer. In case you have some of them, you need to uninstall these by following [this guide](https://github.com/JustWhit3/useful-guides/blob/main/ROOT/Installation/Uninstall.md).
