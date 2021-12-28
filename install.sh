@@ -38,7 +38,7 @@ bash_writer() {
     if ! grep -q "$HOME/${1::-7}$2/bin/thisroot.sh" "$HOME/.bashrc" ; then
         echo "" >> "$HOME/.bashrc"
         echo "source $HOME/${1::-7}$2/bin/thisroot.sh" >> "$HOME/.bashrc"
-        . "$HOME/.bashrc"
+        source source_bash.ls
     fi
 }
 
@@ -137,12 +137,12 @@ if [ "$2" == "Ubuntu" ] || [ "$2" == "ubuntu" ] || [ "$2" == "WSL" ] || [ "$2" =
            ! grep -q "}'):0" "$HOME/.bashrc" ; then
             echo "" >> "$HOME/.bashrc"
             echo "export DISPLAY=\"\$(/sbin/ip route | awk '/default/ { print $3 }'):0\"" >> "$HOME/.bashrc"
-            . "$HOME/.bashrc"
+            source source_bash.ls
         fi
         if ! grep -q "LIBGL_ALWAYS_INDIRECT=1" "$HOME/.bashrc"; then
             echo "" >> "$HOME/.bashrc"
             echo "export LIBGL_ALWAYS_INDIRECT=1" >> "$HOME/.bashrc"
-            . "$HOME/.bashrc"
+            source source_bash.ls
         fi
     fi
     if [ "$3" == "binary" ] || [ "$3" == "Binary" ] ; then
@@ -219,7 +219,7 @@ fi
 #====================================================
 #     QUICK INSTALLATION CHECK
 #====================================================
-. "$HOME/.bashrc"
+source source_bash.ls
 echo "ROOT installation check:"
 echo ""
 if ! eofer ; then
