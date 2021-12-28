@@ -6,6 +6,7 @@
 - [How to use the script](#how-to-use-the-script)
   - [Download the repository](#download-the-repository)
   - [Run the script](#run-the-script)
+- [Examples](#examples)
 
 ## Introduction
 
@@ -84,18 +85,28 @@ To run the script and install the ROOT framework you need to enter the repositor
 ```
 therefore the script takes three arguments in the command prompt:
 1) `[platform-zipped-file]`
+
 It is the zipped file name of the platform of your installation. You can find it by clicking on [this link](https://root.cern/install/all_releases/) and choosing the latest release on the top:
+
 <img src="https://github.com/JustWhit3/root-framework-installer/blob/main/img/latest_release.png">
+
 than choose the platform you want and copy the name of the corresponding .zip file (ex: `root_v6.24.06.Linux-ubuntu20-x86_64-gcc9.3.tar.gz` for Ubuntu 20):
+
 <img src="https://github.com/JustWhit3/root-framework-installer/blob/main/img/distributions.png">
+
 This has to be placed into the `[platform-zipped-file]` place.
+
 In case you are installing via a package manager (for example for MacOS operating system via *brew* or *MacPorts*), you have to enter `package-manager` here.
 
 2) `[operating-system]`
+
 Here you can put the operating system name of your computer. The list of supported operating systems can be viewed at the end of the [*Introduction*](#introduction) section.
 
 2) `[installation-method]`
+
 Here you can put the installation method of the operating system you have chosen. The list of supported installation methods for each operating system can be viewed at the end of the [*Introduction*](#introduction) section.
+
+## Examples
 
 Below, some examples about how to run the script are shown:
 
