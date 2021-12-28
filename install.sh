@@ -209,7 +209,7 @@ fi
 #====================================================
 echo "ROOT has been successfully installed! Close this shell and reopen a new one to complete the installation."
 echo ""
-echo "In the new shell, enter \"root\" (without quotation marks) in the terminal to enter the ROOT command prompt."
+echo "In the new shell, enter \"root\" (without quotation marks) to enter the ROOT command prompt."
 echo ""
 echo "If you have issue with graphics on WSL or any kind of problem you can read my step-by-step guides about ROOT installation here:"
 echo "https://github.com/JustWhit3/useful-guides/tree/main/ROOT/Installation."
