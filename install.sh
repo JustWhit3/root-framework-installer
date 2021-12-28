@@ -46,6 +46,7 @@ bash_writer() {
 #     "eofer" FUNCTION
 #====================================================
 eofer() {
+    source "$HOME/.bashrc"
     root << EOF
     .q
 EOF
@@ -219,10 +220,9 @@ fi
 #====================================================
 #     QUICK INSTALLATION CHECK
 #====================================================
-source "$HOME/.bashrc"
 echo "ROOT installation check:"
 echo ""
-if ! eofer; then
+if ! eofer ; then
     echo "Something went wrong, ROOT has not been correctly installed!"
     exit
 fi
