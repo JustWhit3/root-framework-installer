@@ -38,17 +38,7 @@ bash_writer() {
     if ! grep -q "$HOME/${1::-7}$2/bin/thisroot.sh" "$HOME/.bashrc" ; then
         echo "" >> "$HOME/.bashrc"
         echo "source $HOME/${1::-7}$2/bin/thisroot.sh" >> "$HOME/.bashrc"
-        source source_bash.ls
     fi
-}
-
-#====================================================
-#     "eofer" FUNCTION
-#====================================================
-eofer() {
-    root << EOF
-    .q
-EOF
 }
 
 #====================================================
@@ -137,12 +127,10 @@ if [ "$2" == "Ubuntu" ] || [ "$2" == "ubuntu" ] || [ "$2" == "WSL" ] || [ "$2" =
            ! grep -q "}'):0" "$HOME/.bashrc" ; then
             echo "" >> "$HOME/.bashrc"
             echo "export DISPLAY=\"\$(/sbin/ip route | awk '/default/ { print $3 }'):0\"" >> "$HOME/.bashrc"
-            source source_bash.ls
         fi
         if ! grep -q "LIBGL_ALWAYS_INDIRECT=1" "$HOME/.bashrc"; then
             echo "" >> "$HOME/.bashrc"
             echo "export LIBGL_ALWAYS_INDIRECT=1" >> "$HOME/.bashrc"
-            source source_bash.ls
         fi
     fi
     if [ "$3" == "binary" ] || [ "$3" == "Binary" ] ; then
@@ -217,18 +205,11 @@ else
 fi
 
 #====================================================
-#     QUICK INSTALLATION CHECK
+#     FINAL MESSAGE
 #====================================================
-source source_bash.ls
-echo "ROOT installation check:"
+echo "ROOT has been successfully installed! Close this shell and reopen a new one to complete the installation."
 echo ""
-if ! eofer ; then
-    echo "Something went wrong, ROOT has not been correctly installed!"
-    exit
-fi
-echo "ROOT has been successfully installed!"
-echo ""
-echo "Enter \"root\" (without quotation marks) in the terminal to enter the ROOT command prompt."
+echo "In the new shell, enter \"root\" (without quotation marks) in the terminal to enter the ROOT command prompt."
 echo ""
 echo "If you have issue with graphics on WSL or any kind of problem you can read my step-by-step guides about ROOT installation here:"
 echo "https://github.com/JustWhit3/useful-guides/tree/main/ROOT/Installation."
