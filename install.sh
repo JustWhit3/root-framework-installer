@@ -66,6 +66,8 @@ elif [ -d "${1::-7}" ] ; then
 elif [ -d "$HOME/${1::-7}" ] ; then
     echo ""
     echo "The $1 file has been already downloaded, gunzipped, upacked and moved in the $HOME directory!"
+elif [ "$1" == "package-manager" ] || [ "$1" == "package_manager" ] ; then
+    :
 else
     if [ "$(ls -1 root*tar* 2>/dev/null | wc -l )" -gt 0 ] ; then
         echo ""
