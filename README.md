@@ -28,6 +28,8 @@ The script works for the following operating systems:
 
 >**NOTE 2**: if you find any issue or problem during the installation with this script, please write me or open an issue on the repository and I will fix it as soon as possible.
 
+If you want to cite this software, please use [this](https://github.com/JustWhit3/root-framework-installer/blob/main/CITATION.cff) template for the information.
+
 ## How to use the script
 
 First of all, just to be 100% safe, be sure to don't have other ROOT versions installed in your computer. In case you have some of them, you need to uninstall these by following [this guide](https://github.com/JustWhit3/useful-guides/blob/main/ROOT/Installation/Uninstall.md).
