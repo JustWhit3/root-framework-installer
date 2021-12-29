@@ -10,18 +10,18 @@
 
 ## Introduction
 
-This repository contains instructions about how to run a shell script to automatically install the [ROOT framework](https://github.com/root-project/root) on your computer. You can install the release you prefer (directly downloaded from the official [ROOT website](https://root.cern/install/all_releases/)) for any of the most used operating systems by entering only one shell command in the command prompt!
+This repository contains instructions about how to run a shell script to automatically install the [ROOT framework](https://github.com/root-project/root) on your computer by entering only one command in the terminal prompt! With this, you can install the release you prefer (which is directly downloaded from the official [ROOT website](https://root.cern/install/all_releases/)) for the major part of the most used operating systems.
 
 The script works for the following operating systems:
 
 - **Windows** (release 10 or higher), using [Windows Subsystem for Linux (WSL)](https://docs.microsoft.com/en-us/windows/wsl/install); supported installation methods are:
-  - *Binary*.
+  - *Binary* (recommended).
   - *Source*.
 - **Ubuntu**, supported installation methods are:
-  - *Binary*.
+  - *Binary* (recommended).
   - *Source*.
 - **MacOS**, supported installation methods are:
-  - *[brew](https://brew.sh/index_it)*.
+  - *[brew](https://brew.sh/index_it)* (recommended).
   - *[MacPorts](https://www.macports.org/)*.
 
 >**NOTE**: this script has been widely tested on Ubuntu and Windows operating systems. Any test has been provided for MacOS operating system, but it should fully 100% work on it without any problem.

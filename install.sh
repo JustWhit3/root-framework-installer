@@ -5,15 +5,30 @@
 # $3 - method
 
 #====================================================
+#     "contains" FUNCTION
+#====================================================
+#Check if a string contains a substring.
+contains() {
+    string="$1"
+    substring="$2"
+    if test "${string#*$substring}" != "$string" ; then
+        return 0
+    else
+        return 1
+    fi
+}
+
+#====================================================
 #     "download" FUNCTION
 #====================================================
+#Download the ROOT code from the website.
 download() {
     echo ""
     echo "Downloading the ROOT code from https://root.cern/download/$1..."
     echo "This may take a few minutes!"
     echo ""
     if ! curl https://root.cern/download/$1 -o "$1" ; then
-        echo "Failed to download the zip file!"
+        echo "Failed to download $1 file!"
         exit
     fi
 }
@@ -21,6 +36,7 @@ download() {
 #====================================================
 #     "unpacker" FUNCTION
 #====================================================
+#Unpack the unzipped but yet unpacked file.
 unpacker() {
     tar -xvf "${1::-3}"
     rm root*tar*
@@ -34,12 +50,29 @@ unpacker() {
 #====================================================
 #     "bash_writer" FUNCTION
 #====================================================
+#Write instruction on .bashrc file.
 bash_writer() {
     if ! grep -q "$HOME/${1::-7}$2/bin/thisroot.sh" "$HOME/.bashrc" ; then
         echo "" >> "$HOME/.bashrc"
         echo "source $HOME/${1::-7}$2/bin/thisroot.sh" >> "$HOME/.bashrc"
     fi
 }
+
+#====================================================
+#     INSTALLING GLOBAL PREREQUISITES
+#====================================================
+echo ""
+echo "Installing global prerequisites..."
+echo ""
+sudo apt-get install unzip
+
+#====================================================
+#     CHECKING IF $1 ARGUMENT IS GOOD
+#====================================================
+if ! ( contains "$1" "*tar*gz" ) && ! ( contains "$1" "*zip" ) ; then
+    echo "Inserted first argument $1 is not a zipped file!"
+    exit
+fi
 
 #====================================================
 #     DOWNLOADING THE FILE
@@ -95,6 +128,7 @@ echo ""
 #====================================================
 #     INSTALLATION FOR UBUNTU AND WSL
 #====================================================
+#Ubuntu.
 if [ "$2" == "Ubuntu" ] || [ "$2" == "ubuntu" ] || [ "$2" == "WSL" ] || [ "$2" == "wsl" ] ; then
     echo "Installing prerequisites:"
     echo ""
@@ -114,6 +148,8 @@ if [ "$2" == "Ubuntu" ] || [ "$2" == "ubuntu" ] || [ "$2" == "WSL" ] || [ "$2" =
     echo "If some of them will not be installed correctly don't worry!"
     echo ""
     sudo apt-get install gfortran libssl-dev libpcre3-dev xlibmesa-glu-dev libglew1.5-dev libftgl-dev libmysqlclient-dev libfftw3-dev libcfitsio-dev graphviz-dev libavahi-compat-libdnssd-dev libldap2-dev python-dev libxml2-dev libkrb5-dev libgsl0-dev
+
+    #Windows Subsystem for Linux.
     if [ "$2" == "WSL" ] || [ "$2" == "wsl" ] ; then
         echo ""
         echo "Graphical packages for WSL..."
@@ -133,10 +169,14 @@ if [ "$2" == "Ubuntu" ] || [ "$2" == "ubuntu" ] || [ "$2" == "WSL" ] || [ "$2" =
             echo "export LIBGL_ALWAYS_INDIRECT=1" >> "$HOME/.bashrc"
         fi
     fi
+
+    #Binary distribution.
     if [ "$3" == "binary" ] || [ "$3" == "Binary" ] ; then
         echo ""
         echo "Installing ROOT from bynary distribution..."
         bash_writer "$1" ""
+
+    #Source code.
     elif [ "$3" == "source" ] || [ "$3" == "Source" ] ; then
         echo ""
         echo "Installing ROOT from source code..."
@@ -145,6 +185,8 @@ if [ "$2" == "Ubuntu" ] || [ "$2" == "ubuntu" ] || [ "$2" == "WSL" ] || [ "$2" =
         cmake "$HOME/${1::-7}"
         cmake --build .
         bash_writer "$1" "-build"
+
+    #Other instructions.
     else
         echo ""
         echo "$3 installation method is not supported for $2 operating system!"
@@ -164,6 +206,8 @@ elif [ "$2" == "MacOS" ] || [ "$2" == "MACOS" ] || [ "$2" == "macOS" ] || [ "$2"
     echo ""
     softwareupdate --install -a
     echo ""
+
+    #Brew package manager.
     if [ "$3" == "brew" ] || [ "$3" == "Brew" ] ; then
         echo "Updating and upgrading brew..."
         echo ""
@@ -184,6 +228,8 @@ elif [ "$2" == "MacOS" ] || [ "$2" == "MACOS" ] || [ "$2" == "macOS" ] || [ "$2"
             echo "Unable to install ROOT via brew!"
             exit
         fi
+
+    #MacPorts package manager.
     elif [ "$3" == "MacPorts" ] || [ "$3" == "Macports" ] || [ "$3" == "macports" ] || [ "$3" == "macPorts" ] ; then
         echo "Installing Xcode..."
         echo ""
@@ -193,6 +239,8 @@ elif [ "$2" == "MacOS" ] || [ "$2" == "MACOS" ] || [ "$2" == "macOS" ] || [ "$2"
             echo "Xcode: enter \"xcode-select --install\" on the terminal."
             exit
         fi
+    
+    #Other instructions.
     else
         echo ""
         echo "$3 installation method is not supported for $2 operating system!"
