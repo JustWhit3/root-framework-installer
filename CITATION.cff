@@ -3,7 +3,7 @@ message: "If you use this software, please cite it as below."
 authors:
 - family-names: "Gianluca"
   given-names: "Bianco"
-title: "osmanip"
+title: "root-framework-installer"
 version: 1.0.0
 doi: https://zenodo.org/badge/latestdoi/441515814
 date-released: 2021-12-29
