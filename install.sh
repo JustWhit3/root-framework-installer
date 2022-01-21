@@ -64,7 +64,7 @@ bash_writer() {
 echo ""
 echo "Installing global prerequisites..."
 echo ""
-sudo apt-get install unzip
+sudo apt install unzip
 
 #====================================================
 #     CHECKING IF $1 ARGUMENT IS GOOD
@@ -134,12 +134,12 @@ if [ "$2" == "Ubuntu" ] || [ "$2" == "ubuntu" ] || [ "$2" == "WSL" ] || [ "$2" =
     echo ""
     echo "System upgrade and update..."
     echo ""
-    sudo apt-get upgrade
-    sudo apt-get update
+    sudo apt update
+    sudo apt upgrade
     echo ""
     echo "Mandatory packages..."
     echo ""
-    if ! sudo apt-get install git dpkg-dev cmake g++ gcc binutils libx11-dev libxpm-dev libxft-dev libxext-dev ; then
+    if ! sudo apt install git dpkg-dev cmake g++ gcc binutils libx11-dev libxpm-dev libxft-dev libxext-dev libpng-dev libjpeg-dev python libssl-dev ; then
         echo "Unable to install all the mandatory packages!"
         exit
     fi
@@ -147,16 +147,16 @@ if [ "$2" == "Ubuntu" ] || [ "$2" == "ubuntu" ] || [ "$2" == "WSL" ] || [ "$2" =
     echo "Optional packages..."
     echo "If some of them will not be installed correctly don't worry!"
     echo ""
-    sudo apt-get install gfortran libssl-dev libpcre3-dev xlibmesa-glu-dev libglew1.5-dev libftgl-dev libmysqlclient-dev libfftw3-dev libcfitsio-dev graphviz-dev libavahi-compat-libdnssd-dev libldap2-dev python-dev libxml2-dev libkrb5-dev libgsl0-dev
+    sudo apt install gfortran libssl-dev libpcre3-dev xlibmesa-glu-dev libglew1.5-dev libftgl-dev libmysqlclient-dev libfftw3-dev libcfitsio-dev graphviz-dev libavahi-compat-libdnssd-dev libldap2-dev python-dev python-numpy-dev libxml2-dev libkrb5-dev libgsl0-dev r-base
 
     #Windows Subsystem for Linux.
     if [ "$2" == "WSL" ] || [ "$2" == "wsl" ] ; then
         echo ""
         echo "Graphical packages for WSL..."
         echo ""
-        sudo apt-get install x11-apps
-        if ! sudo apt-get install libtiff5 ; then
-            sudo apt-get install libncurses5
+        sudo apt install x11-apps libgsl23
+        if ! sudo apt install libtiff5 ; then
+            sudo apt install libncurses5
         fi
         if ! grep -q "(/sbin/ip" "$HOME/.bashrc" && ! grep -q "route" "$HOME/.bashrc" && 
            ! grep -q "awk" "$HOME/.bashrc" && ! grep -q "/default/" "$HOME/.bashrc" && 
