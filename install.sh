@@ -147,7 +147,7 @@ if [ "$2" == "Ubuntu" ] || [ "$2" == "ubuntu" ] || [ "$2" == "WSL" ] || [ "$2" =
     echo "Optional packages..."
     echo "If some of them will not be installed correctly don't worry!"
     echo ""
-    sudo apt install gfortran libssl-dev libpcre3-dev xlibmesa-glu-dev libglew1.5-dev libftgl-dev libmysqlclient-dev libfftw3-dev libcfitsio-dev graphviz-dev libavahi-compat-libdnssd-dev libldap2-dev python-dev python-numpy-dev libxml2-dev libkrb5-dev libgsl0-dev r-base
+    sudo apt install gfortran libssl-dev libpcre3-dev xlibmesa-glu-dev libglew1.5-dev libftgl-dev libmysqlclient-dev libfftw3-dev libcfitsio-dev graphviz-dev libavahi-compat-libdnssd-dev libldap2-dev python3-dev python-dev python-numpy-dev libxml2-dev libkrb5-dev libgsl0-dev r-base
 
     #Windows Subsystem for Linux.
     if [ "$2" == "WSL" ] || [ "$2" == "wsl" ] ; then
