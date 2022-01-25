@@ -1,4 +1,14 @@
-# root-framework-installer
+<p align="center"><img src="https://github.com/JustWhit3/root-framework-installer/blob/main/img/logo.svg" height=220></p>
+
+<h3 align="center">A shell script to automatically install the ROOT framework on Ubuntu, Windows or MacOS operating systems</h3>
+<p align="center">
+    <img title="v1.0" alt="v1.0" src="https://img.shields.io/badge/version-v1.0-informational?style=flat-square"
+    <a href="LICENSE">
+        <img title="MIT License" alt="license" src="https://img.shields.io/badge/license-MIT-informational?style=flat-square">
+    </a>
+	<img title="Bash" alt="Bash" src="https://img.shields.io/badge/Bash--informational?style=flat-square">
+    </a>
+</p>
 
 ## Table of contents
 
