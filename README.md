@@ -40,6 +40,10 @@ The script works for the following operating systems:
 
 If you want to cite this software, please use [this](https://github.com/JustWhit3/root-framework-installer/blob/main/CITATION.cff) template for the information.
 
+The software is and will stay **free**, but if you want to support me and its development (for example with the addition of new platforms support) with a donation it would be really appreciated! 
+
+<a href="https://www.buymeacoffee.com/JustWhit33" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" height="41" width="174"></a>
+
 ## How to use the script
 
 First of all, just to be 100% safe, be sure to don't have other ROOT versions installed in your computer. In case you have some of them, you need to uninstall these by following [this guide](https://github.com/JustWhit3/useful-guides/blob/main/ROOT/Installation/Uninstall.md).
