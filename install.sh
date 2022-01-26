@@ -41,9 +41,6 @@ unpacker() {
     tar -xvf "${1::-3}"
     rm root*tar*
     mv root* "${1::-7}"
-    if [ -d "$HOME/${1::-7}" ] ; then
-        rm -rf "$HOME/${1::-7}"
-    fi
     mv "${1::-7}" "$HOME"
 }
 
