@@ -7,7 +7,10 @@
         <img title="MIT License" alt="license" src="https://img.shields.io/badge/license-MIT-informational?style=flat-square">
     </a>
 	<img title="Bash" alt="Bash" src="https://img.shields.io/badge/Bash--informational?style=flat-square">
-    </a>
+    </a></br>
+	<img title="Code size" alt="code size" src="https://img.shields.io/github/languages/code-size/JustWhit3/root-framework-installer?color=red">
+	<img title="Repo size" alt="repo size" src="https://img.shields.io/github/repo-size/JustWhit3/root-framework-installer?color=red">
+	<img title="Lines of code" alt="total lines" src="https://img.shields.io/tokei/lines/github/JustWhit3/root-framework-installer?color=red">
 </p>
 
 ## Table of contents
