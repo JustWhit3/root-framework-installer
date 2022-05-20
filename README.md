@@ -73,7 +73,7 @@ Where ``Downloads`` have to be replaced with the right name of your downloads di
 Now you have to enter your home directory (unless you were already in it, in this case skip this passage) and extract the folder from the zipped file. Therefore lets type this commands one after the other:
 ```shell
 cd $HOME
-unzip osmanroot-framework-installer-main.zip
+unzip root-framework-installer-main.zip
 ```
 And that's all. You can enter the repository folder by simply typing:
 ```shell
