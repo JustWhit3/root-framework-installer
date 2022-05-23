@@ -13,6 +13,8 @@
 	<img title="Lines of code" alt="total lines" src="https://img.shields.io/tokei/lines/github/JustWhit3/root-framework-installer?color=red">
 </p>
 
+<img src="https://github.com/JustWhit3/root-framework-installer/tree/main/img/installation_example.gif">
+
 ## Table of contents
 
 - [Introduction](#introduction)
