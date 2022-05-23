@@ -107,7 +107,7 @@ cd root-framework-installer-x.y.z
 
 To run the script and install the ROOT framework you need to enter the repository folder from a terminal and write on the command prompt:
 ```shell
-./install [platform-zipped-file] [operating-system] [installation-method]
+./install.sh [platform-zipped-file] [operating-system] [installation-method]
 ```
 therefore the script takes three arguments in the command prompt:
 1) `[platform-zipped-file]`
@@ -139,25 +139,25 @@ Below, some examples about how to run the script are shown:
 - **Windows** (with WSL shell and Ubuntu 20 *binary* distribution):
 
 ```shell
-./install root_v6.24.06.Linux-ubuntu20-x86_64-gcc9.3.tar.gz WSL binary
+./install.sh root_v6.24.06.Linux-ubuntu20-x86_64-gcc9.3.tar.gz WSL binary
 ```
 
 - **Ubuntu** (via *source* code):
 
 ```shell
-./install root_v6.24.06.source.tar.gz Ubuntu source
+./install.sh root_v6.24.06.source.tar.gz Ubuntu source
 ```
 
 - **Ubuntu** (via *binary* distribution for Ubuntu 20):
 
 ```shell
-./install root_v6.24.06.Linux-ubuntu20-x86_64-gcc9.3.tar.gz Ubuntu binary
+./install.sh root_v6.24.06.Linux-ubuntu20-x86_64-gcc9.3.tar.gz Ubuntu binary
 ```
 
 - **MacOS** (via *brew* package manager):
 
 ```shell
-./install package-manager MacOS brew
+./install.sh package-manager MacOS brew
 ```
 
 ## Credits
