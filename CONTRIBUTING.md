@@ -29,5 +29,10 @@ If you find any bug or something you think doesn't work correctly in the code, y
 
 1) If this issue is due to download or installation of the script, be sure to have read [this](https://github.com/JustWhit3/root-framework-installer#:~:text=be%20really%20appreciated!-,How%20to%20use%20the%20script,-First%20of%20all) document, in which all the passages are explained in detail.
 2) If this issue is due to a code feature, be sure to have done a test run of the script, in order to see if your machine has all the necessary prerequisites.
+3) Follow the [issue template](https://github.com/JustWhit3/root-framework-installer/blob/main/.github/ISSUE_TEMPLATE).
 
 Once the issue is received, I will analyze it and once is solved I will respond asking confirmation about my fixing. In this case, if any answer is received in 7 days, the issue will be automatically closed.
+
+## Feature request
+
+Follow the [feature requests template](https://github.com/JustWhit3/root-framework-installer/blob/main/.github/ISSUE_TEMPLATE).
