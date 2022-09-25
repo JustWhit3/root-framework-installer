@@ -5,6 +5,14 @@
 # $3 - method
 
 #====================================================
+#     Metadata
+#====================================================
+# File name:  print.hpp
+# Author:     Gianluca Bianco (biancogianluca9@gmail.com)
+# Date:       2022-01-14
+# Copyright:  (c) 2022 Gianluca Bianco under the MIT license.
+
+#====================================================
 #     "contains" FUNCTION
 #====================================================
 #Check if a string contains a substring.
