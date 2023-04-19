@@ -144,7 +144,7 @@ if [ "$2" == "Ubuntu" ] || [ "$2" == "ubuntu" ] || [ "$2" == "WSL" ] || [ "$2" =
     echo ""
     echo "Mandatory packages..."
     echo ""
-    if ! sudo apt install git dpkg-dev cmake g++ gcc binutils libx11-dev libxpm-dev libxft-dev libxext-dev libpng-dev libjpeg-dev python libssl-dev ; then
+    if ! sudo apt install git dpkg-dev cmake g++ gcc binutils libx11-dev libxpm-dev libxft-dev libxext-dev libpng-dev libjpeg-dev python2 libssl-dev ; then
         echo "Unable to install all the mandatory packages!"
         exit
     fi
